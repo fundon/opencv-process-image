@@ -58,13 +58,13 @@ void MyGammaCorrection(Mat& src, Mat& dst, float fGamma)
 
 int main(int argc, char **argv)
 {
-    Mat img = cv::imread("0003.jpg");
+    Mat img = cv::imread(argv[1]);
     Mat dst;
 
-    float gamma_v = atoi(argv[1]);
+    float gamma_v = atoi(argv[2]);
 
     MyGammaCorrection(img, dst, gamma_v);
 
-    cv::imwrite("gamma.jpg", dst);
+    cv::imwrite(argv[3], dst);
 }
 
