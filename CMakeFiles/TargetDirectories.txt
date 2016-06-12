@@ -1,3 +1,0 @@
-/Users/fundon/Dev/repos/opencv-test/CMakeFiles/edit_cache.dir
-/Users/fundon/Dev/repos/opencv-test/CMakeFiles/rebuild_cache.dir
-/Users/fundon/Dev/repos/opencv-test/CMakeFiles/process_image.dir
