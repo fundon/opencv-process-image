@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 图片处理可执行程序
-process_image="/opt/opencv-procfess-image/process_image"
+# process_image="/opt/opencv-procfess-image/process_image"
 process_image="./process_image"
 
 # 处理目录
