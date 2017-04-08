@@ -14,11 +14,12 @@ Mat MyGammaCorrection(Mat& img, float fGamma) {
 
   Mat dst = img.clone();
   const int channels = dst.channels();
-  switch(channels) {
+  switch (channels) {
     case 1:
       {
-        MatIterator_<uchar> it, end;
-        for (it = dst.begin<uchar>(), end = dst.end<uchar>(); it != end; it++) {
+        MatIterator_<uchar> it = dst.begin<uchar>();
+        MatIterator_<uchar> end =  dst.end<uchar>();
+        for (; it != end; it++) {
           //*it = pow((float)(((*it))/255.0), fGamma) * 255.0;
           *it = lut[(*it)];
         }
@@ -26,8 +27,9 @@ Mat MyGammaCorrection(Mat& img, float fGamma) {
       }
     case 3:
       {
-        MatIterator_<Vec3b> it, end;
-        for (it = dst.begin<Vec3b>(), end = dst.end<Vec3b>(); it != end; it++){
+        MatIterator_<Vec3b> it = dst.begin<Vec3b>();
+        MatIterator_<Vec3b> end =  dst.end<Vec3b>();
+        for (; it != end; it++) {
           //(*it)[0] = pow((float)(((*it)[0])/255.0), fGamma) * 255.0;
           //(*it)[1] = pow((float)(((*it)[1])/255.0), fGamma) * 255.0;
           //(*it)[2] = pow((float)(((*it)[2])/255.0), fGamma) * 255.0;
@@ -35,9 +37,7 @@ Mat MyGammaCorrection(Mat& img, float fGamma) {
           (*it)[1] = lut[((*it)[1])];
           (*it)[2] = lut[((*it)[2])];
         }
-
         break;
-
       }
   }
 
@@ -64,7 +64,7 @@ Mat MyGaussianFilter (Mat& img) {
 int main(int argc, char **argv) {
   char *input = argv[1];
   char *output = argv[2];
-  float gamma_v = atoi(argv[3]);
+  float gamma = atoi(argv[3]);
 
   // 读取图片，并转换
   Mat src = imread(input, CV_LOAD_IMAGE_COLOR);
@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
 
   Mat dst = MyGaussianFilter(img);
 
-  dst = MyGammaCorrection(dst, gamma_v);
+  dst = MyGammaCorrection(dst, gamma);
 
   // JPEG 品质
   vector<int> params;
